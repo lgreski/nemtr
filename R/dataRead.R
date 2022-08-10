@@ -63,12 +63,12 @@ dataRead <- function(dataFrame, timing, streams, VoI = NA, type="long", median0 
   if(is.numeric(median0) != TRUE){
     stop("Inputted target median is non-numeric")
   }
-  if(median0 < 0){
-    stop("Please input a target median greater than 0")
-  }
-  if(median0 > 1){
-    stop("Please input a target median less than 1")
-  }
+  #if(median0 < 0){
+  #  stop("Please input a target median greater than 0")
+  #}
+  #if(median0 > 1){
+  #  stop("Please input a target median less than 1")
+  #}
   if(is.numeric(delta) != TRUE){
     stop("Inputted target delta is non-numeric")
   }
