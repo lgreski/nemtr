@@ -1,4 +1,23 @@
 ## dataRead ##
+#'
+#' Read in data and validate before analysis is conducted
+#' @param dataFrame A user inputted dataframe, can be wide or long
+#' @param timing A string of the timing variable name
+#' @param streams A string of the streams variable name
+#' @param VoI A string of the Variable of Interest name
+#' @param type A string of the type of data (default long)
+#' @param median0 A value for expected median
+#' @param delta A value for delta (default 3)
+#'
+#' @importFrom tidyr pivot_longer
+#'
+#' @return A validated dataframe in long format
+#' @export
+#'
+#' @examples
+#' df <- testData
+#' dataRead(df, timing="hour", streams=c("rep1", "rep2", "rep3", "rep4", "rep5", "rep6", "rep7", "rep8", "rep9", "rep10"), type="wide", median0 = .8)
+#'
 dataRead <- function(dataFrame, timing, streams, VoI = NA, type="long", median0 = NA, delta = 3){
   if(missing(timing) == TRUE){
     stop("Input dataframe needs timing variable")
@@ -44,12 +63,12 @@ dataRead <- function(dataFrame, timing, streams, VoI = NA, type="long", median0 
   if(is.numeric(median0) != TRUE){
     stop("Inputted target median is non-numeric")
   }
-  if(median0 < 0){
-    stop("Please input a target median greater than 0")
-  }
-  if(median0 > 1){
-    stop("Please input a target median less than 1")
-  }
+  #if(median0 < 0){
+  #  stop("Please input a target median greater than 0")
+  #}
+  #if(median0 > 1){
+  #  stop("Please input a target median less than 1")
+  #}
   if(is.numeric(delta) != TRUE){
     stop("Inputted target delta is non-numeric")
   }
@@ -59,5 +78,3 @@ dataRead <- function(dataFrame, timing, streams, VoI = NA, type="long", median0 
 
 
 }
-
-dataRead(x, timing="hour", streams=c("rep1", "rep2", "rep3", "rep4", "rep5", "rep6", "rep7", "rep8", "rep9", "rep10"), type="wide", median0 = .8)
