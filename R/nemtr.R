@@ -1,3 +1,31 @@
+## nemtr ##
+#'
+#' Nonparametric Extended Median Test
+#'
+#' Take a dataframe, validate it, and then conduct the Nonparametric Extended
+#' Median Test to generate and display a control chart
+#' @param dataFrame A user inputted dataframe, can be wide or long
+#' @param timing A string of the timing variable name
+#' @param streams A string of the streams variable name
+#' @param VoI A string of the Variable of Interest name
+#' @param type A string of the type of data (default long)
+#' @param median0 A value for expected median
+#' @param delta A value for delta (default 3)
+#'
+#' @importFrom ggplot2 ggplot geom_line geom_point
+#' @importFrom dplyr group_by summarise mutate lag filter n
+#' @importFrom magrittr %>%
+#' @importFrom tidyr pivot_longer
+#'
+#' @return A validated dataframe in long format
+#' @export
+#'
+#' @examples
+#' load("~/R/nemtr/data/testData.rda")
+#' df <- testData
+#' nemtr(df, timing="hour", streams=c("rep1", "rep2", "rep3", "rep4", "rep5", "rep6", "rep7", "rep8", "rep9", "rep10"), type="wide", median0 = .8)
+#'
+
 nemtr <- function(dataFrame, timing, streams, VoI = NA, type="long", median0 = NA, delta = 3){
   dataProc <- dataRead(dataFrame, timing, streams, VoI, type, median0, delta)
   dataProc  %>% group_by(streams) %>% summarise(num.streams = n()) -> c
@@ -27,20 +55,3 @@ nemtr <- function(dataFrame, timing, streams, VoI = NA, type="long", median0 = N
     geom_point(aes(y = st))
 
 }
-
-#nemtr(df, timing="hour", streams=c("rep1", "rep2", "rep3", "rep4", "rep5", "rep6", "rep7", "rep8", "rep9", "rep10"), type="wide", median0 = .8)
-
-
-
-#median0 = 0.8
-#n <- length(unique(expOutput$streams))
-#expOutput %>%
-#  filter(VoI > median0) %>%
-#  group_by(streams,timing) %>%
-#  summarise(frequency = n()) %>%
-#  mutate(zt = (frequency - (n*0.50)/(n*2.5)**0.50))  -> nemt_cusum
-
-#turnstiles %>% group_by(turnstile,hour) %>% summarise(num.streams = n()) -> e
-#expOutput  %>% group_by(streams) %>% summarise(num.streams = n()) -> c
-
-#n <- e[1,3]
