@@ -12,10 +12,9 @@
 #' @param median0 A value for expected median
 #' @param delta A value for delta (default 3)
 #'
-#' @importFrom ggplot2 ggplot geom_line geom_point
+#' @importFrom ggplot2 ggplot geom_line geom_point aes
 #' @importFrom dplyr group_by summarise mutate lag filter n
 #' @importFrom magrittr %>%
-#' @importFrom tidyr pivot_longer
 #'
 #' @return A validated dataframe in long format
 #' @export
@@ -48,10 +47,6 @@ nemtr <- function(dataFrame, timing, streams, VoI = NA, type="long", median0 = N
            LL = ifelse(is.na(stLag), -1*delta*(c**0.5), (2*stLag) - UL),
            OOC = ifelse(st > UL | st < LL, timing,NA)) -> nemt_plot
 
-  ggplot(data = nemt_plot, aes(x = timing)) +
-    geom_line(aes(y = st)) +
-    geom_line(aes(y = UL)) +
-    geom_line(aes(y = LL)) +
-    geom_point(aes(y = st))
+  return(nemt_plot)
 
 }

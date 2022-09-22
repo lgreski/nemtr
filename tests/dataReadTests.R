@@ -1,6 +1,7 @@
 ## ReadR Tests ##
 #' @importFrom testthat test_that expect_equal expect_error
 #' @importFrom tidyr pivot_longer
+#' @importFrom magrittr %>%
 #'
 
 # if(!require(testthat)){
