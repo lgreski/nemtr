@@ -1,5 +1,7 @@
 ## dataRead ##
 #'
+#' Read and Validate Dataframe
+#'
 #' Read in data and validate before analysis is conducted
 #' @param dataFrame A user inputted dataframe, can be wide or long
 #' @param timing A string of the timing variable name
@@ -10,6 +12,7 @@
 #' @param delta A value for delta (default 3)
 #'
 #' @importFrom tidyr pivot_longer
+#' @importFrom magrittr %>%
 #'
 #' @return A validated dataframe in long format
 #' @export
@@ -33,7 +36,7 @@ dataRead <- function(dataFrame, timing, streams, VoI = NA, type="long", median0 
     #    stop("Input dataframe needs equal sample count")
     #  }
     #}
-    dataFrame <- pivot_longer(dataFrame, cols = streams, names_to = "streams", values_to = "VoI")
+    dataFrame <- tidyr::pivot_longer(dataFrame, cols = streams, names_to = "streams", values_to = "VoI")
     ## Do conversion
     colnames(dataFrame) <- c("timing", "streams", "VoI")
   }
