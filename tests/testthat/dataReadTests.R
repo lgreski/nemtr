@@ -41,23 +41,23 @@
 #colnames(expOutput) <- c("timing", "streams", "VoI")
 
 
-load("~/R/nemtr/data/expOutput.rda")
-load("~/R/nemtr/data/testData.rda")
-load("~/R/nemtr/data/testDataShort.rda")
-load("~/R/nemtr/data/testDataLong.rda")
-load("~/R/nemtr/data/testDataLongShort.rda")
-load("~/R/nemtr/data/testDataLongErrorSNA.rda")
-load("~/R/nemtr/data/testDataLongErrorTNA.rda")
-load("~/R/nemtr/data/testDataLongErrorTCH.rda")
-load("~/R/nemtr/data/testDataLongErrorHNA.rda")
-load("~/R/nemtr/data/testDataLongErrorHCH.rda")
+load("./data/expOutput.rda")
+load("./data/testData.rda")
+load("./data/testDataShort.rda")
+load("./data/testDataLong.rda")
+load("./data/testDataLongShort.rda")
+load("./data/testDataLongErrorSNA.rda")
+load("./data/testDataLongErrorTNA.rda")
+load("./data/testDataLongErrorTCH.rda")
+load("./data/testDataLongErrorHNA.rda")
+load("./data/testDataLongErrorHCH.rda")
 
 
 ## function(dataFrame, timing, streams, VoI = NA, type="long", median0 = NA, delta = 3) ##
 
 
 testthat::test_that("dataRead program works", {
-    source("~/R/nemtr/R/dataRead.R")
+
     testthat::expect_message(dataRead(testData, timing="hour", streams=c("rep1", "rep2", "rep3", "rep4", "rep5", "rep6", "rep7", "rep8", "rep9", "rep10"), type="wide", median0 = .8), "Data is wide")      # Check for wide data
     testthat::expect_error(dataRead(testData, streams=c("rep1", "rep2", "rep3", "rep4", "rep5", "rep6", "rep7", "rep8", "rep9", "rep10"), type="wide"), "Input dataframe needs timing variable")            # Check missing time variable
     testthat::expect_error(dataRead(testData, "hour", type="wide"), "Input dataframe needs stream identifier variable")          # Check for stream identifier

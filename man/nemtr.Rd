@@ -37,8 +37,7 @@ Take a dataframe, validate it, and then conduct the Nonparametric Extended
 Median Test to generate and display a control chart
 }
 \examples{
-load("~/R/nemtr/data/testData.rda")
-df <- testData
-nemtr(df, timing="hour", streams=c("rep1", "rep2", "rep3", "rep4", "rep5", "rep6", "rep7", "rep8", "rep9", "rep10"), type="wide", median0 = .8)
+load(system.file("data", "testData.rda",package = "nemtr"))
+nemtr(testData, timing="hour", streams=c("rep1", "rep2", "rep3", "rep4", "rep5", "rep6", "rep7", "rep8", "rep9", "rep10"), type="wide", median0 = .8)
 
 }

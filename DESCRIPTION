@@ -13,6 +13,6 @@ URL: https://github.com/calebgreski/nemtr
 BugReports: https://github.com/calebgreski/nemtr/issues
 Imports: magrittr, tidyr, dplyr, ggplot2, testthat
 Depends: 
-    R (>= 2.10)
+    R (>= 3.50)
 LazyData: true
 Config/testthat/edition: 3
